@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
-import { useAuthState } from 'context/LoginContext';
+import { useAuthState } from 'context/AuthContext';
 
 import Home from 'pages/Home';
 import SignIn from 'pages/SignIn';
