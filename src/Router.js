@@ -1,14 +1,30 @@
-import Home from "Home";
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+
+import { useAuthState } from 'context/LoginContext';
+
+import Home from 'pages/Home';
+import SignIn from 'pages/SignIn';
+import SignUp from 'pages/SignUp';
 
 const Router = () => {
+  const { isLoggedIn } = useAuthState();
+  const navigator = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigator('/signin');
+    } else {
+      navigator('/');
+    }
+  }, [isLoggedIn]);
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/signin" element={<SignIn />} />
+      <Route path="/signup" element={<SignUp />} />
+    </Routes>
   );
 };
 
