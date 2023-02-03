@@ -12,3 +12,8 @@
 | `Docs: `     | 문서를 수정한 경우                                    |
 | `Rename: `   | 파일 혹은 폴더명을 수정하거나 옮기는 작업만인 경우    |
 | `Remove: `   | 파일을 삭제하는 작업만 수행한 경우                    |
+
+### 고민
+
+- useFetch -> useMutaion
+- Login, SignUp 페이지를 합칠지

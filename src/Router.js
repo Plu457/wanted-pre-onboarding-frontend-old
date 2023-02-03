@@ -4,8 +4,8 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'context/AuthContext';
 
 import Home from 'pages/Home';
-import SignIn from 'pages/SignIn';
-import SignUp from 'pages/SignUp';
+import LoginPage from 'pages/Login';
+import SignUpPage from 'pages/SignUp';
 
 const Router = () => {
   const { isLoggedIn } = useAuthState();
@@ -23,8 +23,8 @@ const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/signin" element={<SignIn />} />
-      <Route path="/signup" element={<SignUp />} />
+      <Route path="/signin" element={<LoginPage />} />
+      <Route path="/signup" element={<SignUpPage />} />
     </Routes>
   );
 };

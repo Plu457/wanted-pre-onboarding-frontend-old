@@ -6,9 +6,9 @@ import { getValidityErrorMessage, Storage } from 'utils';
 import useMutation from 'utils/hooks/useMutaion';
 import SignUpView from 'views/SignUpView';
 
-const SignIn = () => {
+const SignUpPage = () => {
   const navigate = useNavigate();
-  const loginData = useMemo(() => new Map(), []);
+  const formData = useMemo(() => new Map(), []);
 
   //TODO: Modal 컴포넌트 만든 뒤 error 메시지를 적용하기
   const [signUp, { data: signUpData, errorMessage }] = useMutation({
@@ -25,13 +25,15 @@ const SignIn = () => {
     $target.setCustomValidity(validityErrorMessage);
     $target.reportValidity();
 
-    loginData.set($target.name, $target.value);
+    formData.set($target.name, $target.value);
   };
 
   const onSubmit = async e => {
     e.preventDefault();
 
-    signUp(Object.fromEntries(loginData));
+    const parsedFormData = Object.fromEntries(formData);
+
+    signUp(parsedFormData);
   };
 
   useEffect(() => {
@@ -48,4 +50,4 @@ const SignIn = () => {
   return <SignUpView onSubmit={onSubmit} handleChange={handleChange} />;
 };
 
-export default SignIn;
+export default SignUpPage;
