@@ -1,14 +1,15 @@
 import React, { createContext, useState, useMemo, useContext } from 'react';
+import { Constants } from 'commons';
 import { Storage } from 'utils';
-
-const TOKEN_NAME = 'access_token';
 
 const AuthContext = createContext(null);
 
 export const useAuthState = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(!!Storage.getAuthToken({ name: TOKEN_NAME }));
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    !!Storage.getAuthToken({ name: Constants.AuthTokenName }),
+  );
 
   const state = useMemo(() => ({ isLoggedIn, setIsLoggedIn }), [isLoggedIn]);
 
