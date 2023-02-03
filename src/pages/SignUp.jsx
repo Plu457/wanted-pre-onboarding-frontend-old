@@ -1,5 +1,7 @@
+import SignUpView from 'views/SignUpView';
+
 const SignUp = () => {
-  return <div>SignUp</div>;
+  return <SignUpView />;
 };
 
 export default SignUp;

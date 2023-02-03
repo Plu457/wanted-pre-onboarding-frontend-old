@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom';
+
 import { Images } from 'commons';
 import Input from 'components/Input';
 
-const LoginView = () => {
+const SignUpView = () => {
   return (
     <main className="flex items-center justify-center h-screen bg-gray-100">
       <form>
@@ -15,12 +17,13 @@ const LoginView = () => {
             className="w-full py-2 text-gray-100 transition-colors bg-blue-500 rounded-md hover:bg-blue-600"
             type="submit"
           >
-            로그인
+            회원가입
           </button>
+          <Link to="/signin">로그인 화면으로 이동</Link>
         </div>
       </form>
     </main>
   );
 };
 
-export default LoginView;
+export default SignUpView;

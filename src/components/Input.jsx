@@ -10,7 +10,7 @@ const Input = ({ name, className, size, label, pattern, testId, elRef, ...props 
       minLength={size}
       maxLength={size}
       data-testid={testId}
-      className={`w-full px-1 py-2 mb-4 text-gray-500 focus:border bg-gray-50 ${className}`}
+      className={`w-full px-1 py-2 text-gray-500  mb-4 bg-gray-50 ${className}`}
       {...props}
     />
   </>
