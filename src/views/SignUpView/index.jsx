@@ -16,6 +16,7 @@ const SignUpView = ({ onSubmit, handleChange }) => {
             type="email"
             label="Email"
             pattern="[a-z0-9]+@[a-z]+\.[a-z]{2,3}"
+            data-testid="email-input"
             autoComplete="off"
             required
           />
@@ -24,11 +25,13 @@ const SignUpView = ({ onSubmit, handleChange }) => {
             type="password"
             label="Password"
             pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+            data-testid="password-input"
             required
           />
           <button
             className="w-full py-2 text-gray-100 transition-colors bg-blue-500 rounded-md hover:bg-blue-600"
             type="submit"
+            data-testid="signup-button"
           >
             회원가입
           </button>
