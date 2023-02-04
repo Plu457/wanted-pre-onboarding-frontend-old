@@ -38,11 +38,7 @@ const SignUpPage = () => {
 
   useEffect(() => {
     if (signUpData && signUpData.access_token) {
-      Storage.setAuthToken({
-        name: Constants.AuthTokenName,
-        value: signUpData.access_token,
-      });
-      navigate('/');
+      navigate('/signin');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [signUpData]);
