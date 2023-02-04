@@ -10,7 +10,7 @@ const SignUpPage = () => {
   const navigate = useNavigate();
   const formData = useMemo(() => new Map(), []);
 
-  //TODO: Modal 컴포넌트 만든 뒤 error 메시지를 적용하기
+  //TODO: Modal 컴포넌트 만든 뒤 error 메시지를 적용하기 or alert 창으로 표시하기
   const [signUp, { data: signUpData, errorMessage }] = useMutation({
     url: '/auth/signup',
     method: 'POST',
