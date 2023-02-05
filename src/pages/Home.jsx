@@ -1,5 +1,7 @@
+import TodoView from 'views/TodoView';
+
 const Home = () => {
-  return <div>Home</div>;
+  return <TodoView />;
 };
 
 export default Home;
