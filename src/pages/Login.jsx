@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { getValidityErrorMessage, Storage } from 'utils';
@@ -9,10 +9,17 @@ import { Constants } from 'commons';
 const LoginPage = () => {
   const navigate = useNavigate();
   const formData = useMemo(() => new Map(), []);
-  //TODO: Modal 컴포넌트 만든 뒤 error 메시지를 적용하기 or alert 창으로 표시하기
-  const [signIn, { data: signInData, error }] = useMutation({
+
+  const [signIn] = useMutation({
     url: '/auth/signin',
     method: 'POST',
+    onSuccess: res => {
+      Storage.setAuthToken({
+        name: Constants.AuthTokenName,
+        value: res.access_token,
+      });
+      navigate('/');
+    },
   });
 
   const handleChange = e => {
@@ -32,17 +39,6 @@ const LoginPage = () => {
 
     signIn(parsedFormData);
   };
-
-  useEffect(() => {
-    if (signInData && signInData.access_token) {
-      Storage.setAuthToken({
-        name: Constants.AuthTokenName,
-        value: signInData.access_token,
-      });
-      navigate('/');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [signInData]);
 
   return <LoginView onSubmit={onSubmit} handleChange={handleChange} />;
 };
