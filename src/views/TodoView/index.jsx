@@ -1,7 +1,7 @@
 import Input from 'components/Input';
 import ItemList from './ItemList';
 
-const TodoView = () => {
+const TodoView = ({ todoList }) => {
   return (
     <main className="flex items-center justify-center h-screen bg-slate-100">
       <div className="w-[540px] p-8 bg-white rounded-lg">
@@ -16,7 +16,9 @@ const TodoView = () => {
           </div>
         </form>
         <ul className="flex flex-col">
-          <ItemList />
+          {todoList?.map(item => (
+            <ItemList item={item} />
+          ))}
         </ul>
       </div>
     </main>
