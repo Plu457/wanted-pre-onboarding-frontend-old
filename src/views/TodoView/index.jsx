@@ -7,7 +7,7 @@ const TodoView = ({ todoList }) => {
       <div className="w-[540px] p-8 bg-white rounded-lg">
         <header className="flex justify-between mb-4">
           <h2 className="text-xl font-semibold">TODO LIST</h2>
-          <span>총 0개</span>
+          <span>총 {todoList?.length}개</span>
         </header>
         <form>
           <div className="flex gap-3 mb-3">

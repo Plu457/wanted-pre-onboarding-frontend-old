@@ -1,26 +1,11 @@
 import { useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-import { getValidityErrorMessage, Storage } from 'utils';
-import useMutation from 'utils/hooks/useMutaion';
+import { getValidityErrorMessage } from 'utils';
+import { useLogin } from 'utils/hooks';
 import LoginView from 'views/LoginView';
-import { Constants } from 'commons';
 
 const LoginPage = () => {
-  const navigate = useNavigate();
+  const { signIn } = useLogin();
   const formData = useMemo(() => new Map(), []);
-
-  const [signIn] = useMutation({
-    url: '/auth/signin',
-    method: 'POST',
-    onSuccess: res => {
-      Storage.setAuthToken({
-        name: Constants.AuthTokenName,
-        value: res.access_token,
-      });
-      navigate('/');
-    },
-  });
 
   const handleChange = e => {
     const $target = e.target;

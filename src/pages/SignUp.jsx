@@ -1,21 +1,12 @@
 import { useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
 
+import { useSignUp } from 'utils/hooks';
 import { getValidityErrorMessage } from 'utils';
-import useMutation from 'utils/hooks/useMutaion';
 import SignUpView from 'views/SignUpView';
 
 const SignUpPage = () => {
-  const navigate = useNavigate();
+  const { signUp } = useSignUp();
   const formData = useMemo(() => new Map(), []);
-
-  const [signUp] = useMutation({
-    url: '/auth/signUp',
-    method: 'POST',
-    onSuccess: () => {
-      navigate('/signin');
-    },
-  });
 
   const handleChange = e => {
     const $target = e.target;
