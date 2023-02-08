@@ -2,9 +2,11 @@ import { useFetch } from 'utils/hooks';
 import { Storage } from 'utils';
 import { Constants } from 'commons';
 
-const useTodos = () => {
+const useGetTodos = () => {
   const URL = '/todos';
   const accessToken = Storage.getAuthToken({ name: Constants.AuthTokenName });
+  const isValidToken = !['undefined', null, ''].includes(accessToken);
+
   const options = {
     method: 'GET',
     headers: {
@@ -12,7 +14,7 @@ const useTodos = () => {
     },
   };
 
-  return useFetch(URL, options);
+  return useFetch(URL, options, isValidToken);
 };
 
-export default useTodos;
+export default useGetTodos;

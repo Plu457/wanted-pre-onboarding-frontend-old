@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Constants } from 'commons';
 
-const useFetch = (url, options) => {
+const useFetch = (url, options, isValidToken) => {
   const [fetchState, setFetchValue] = useState({
     data: undefined,
     isLoading: false,
@@ -12,6 +12,8 @@ const useFetch = (url, options) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      if (!isValidToken) return;
+
       try {
         setFetchValue(prev => ({ ...prev, isLoading: true }));
         const response = await fetch(`${Constants.BASE_URL}${url}`, options);
