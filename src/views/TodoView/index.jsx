@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import Input from 'components/Input';
 import TodoItem from './TodoItem';
 
-const TodoView = ({ todoList, onSubmitTodo }) => {
+const TodoView = ({ todoList, onSubmitTodo, onDeleteTodo }) => {
   const inputRef = useRef(null);
 
   return (
@@ -20,7 +20,7 @@ const TodoView = ({ todoList, onSubmitTodo }) => {
         </form>
         <ul className="flex flex-col">
           {todoList?.map(item => (
-            <TodoItem key={item.id} item={item} />
+            <TodoItem key={item.id} onDeleteTodo={onDeleteTodo} {...item} />
           ))}
         </ul>
       </div>

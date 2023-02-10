@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import { Constants } from 'commons';
-import { Storage } from 'utils';
 
-const useMutation = ({ url, method, onSuccess, onError }) => {
+const useMutation = (fetchAPI, { onSuccess, onError }) => {
   const [value, setValue] = useState({
     data: undefined,
     isLoading: false,
@@ -11,37 +9,21 @@ const useMutation = ({ url, method, onSuccess, onError }) => {
 
   const { data, isLoading, error } = value;
 
-  const supportedMethods = ['POST', 'PUT', 'DELETE'];
-
   const mutation = async data => {
-    if (!url || !method) {
-      setValue(prev => ({ ...prev, error: 'url과 메서드가 필요합니다.' }));
-      return;
-    }
-    if (!supportedMethods.includes(method.toUpperCase())) {
-      setValue(prev => ({ ...prev, error: `${method} 메서드는 지원해주지 않습니다.` }));
-      return;
-    }
-
     try {
-      const token = Storage.getAuthToken({ name: Constants.AuthTokenName });
       setValue(prev => ({ ...prev, isLoading: true }));
 
-      const URL = `${Constants.BASE_URL}${url}`;
+      // const response = await (await fetchAPI(data)).json();
+      const response = await fetchAPI(data);
+      if (response.status === 204) {
+        if (onSuccess) onSuccess(data);
+        return;
+      }
 
-      const response = await (
-        await fetch(URL, {
-          method: method.toUpperCase(),
-          body: JSON.stringify(data),
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token || null}`,
-          },
-        })
-      ).json();
-      setValue(prev => ({ ...prev, data: response }));
+      const responseData = await response.json();
+      setValue(prev => ({ ...prev, data: responseData }));
 
-      if (onSuccess) onSuccess(response);
+      if (onSuccess) onSuccess(responseData);
     } catch (error) {
       setValue(prev => ({ ...prev, error }));
       if (onError) onError(error);
