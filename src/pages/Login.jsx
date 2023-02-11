@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { getValidityErrorMessage } from 'utils';
-import { useLogin } from 'utils/hooks';
+import { useLogin } from 'hooks';
 import LoginView from 'views/LoginView';
 
 const LoginPage = () => {

@@ -1,2 +1,2 @@
 export { default as Storage } from './Storage';
-export { default as getValidityErrorMessage } from './getValidityErrorMessage';
+export { default as getValidityErrorMessage } from './GetValidityErrorMessage';

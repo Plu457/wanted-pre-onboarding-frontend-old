@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { useSignUp } from 'utils/hooks';
+import { useSignUp } from 'hooks';
 import { getValidityErrorMessage } from 'utils';
 import SignUpView from 'views/SignUpView';
 
