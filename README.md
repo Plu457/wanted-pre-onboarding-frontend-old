@@ -17,7 +17,7 @@
 ## 실행 방법
 
 ```bash
-yarn init
+yarn install or yarn
 yarn start
 ```
 
