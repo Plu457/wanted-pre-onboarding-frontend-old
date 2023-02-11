@@ -13,7 +13,6 @@ const useMutation = (fetchAPI, { onSuccess, onError }) => {
     try {
       setValue(prev => ({ ...prev, isLoading: true }));
 
-      // const response = await (await fetchAPI(data)).json();
       const response = await fetchAPI(data);
       if (response.status === 204) {
         if (onSuccess) onSuccess(data);

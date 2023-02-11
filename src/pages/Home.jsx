@@ -1,6 +1,6 @@
 import { useTodoList } from 'context/TodoContext';
 import { useEffect } from 'react';
-import { useCreateTodo, useDeleteTodo, useGetTodos } from 'utils/hooks';
+import { useCreateTodo, useDeleteTodo, useGetTodos, useUpdateTodo } from 'utils/hooks';
 import TodoView from 'views/TodoView';
 
 const Home = () => {
@@ -9,22 +9,41 @@ const Home = () => {
   const { data: getTodos } = useGetTodos();
   const { createTodo } = useCreateTodo();
   const { deleteTodo } = useDeleteTodo();
+  const { updateTodo } = useUpdateTodo();
 
-  const onSubmitTodo = value => e => {
+  const onSubmitTodo = todo => e => {
     e.preventDefault();
-    if (!value) return;
+    if (!todo) return;
 
-    createTodo({ todo: value });
+    createTodo({ todo });
   };
 
-  const onDeleteTodo = id => deleteTodo(id);
+  const onDeleteTodo = id => {
+    if (window.confirm('정말 삭제하시겠습니까?')) {
+      deleteTodo({ id });
+    }
+  };
+
+  const onUpdateTodo = ({ id, todo, isCompleted }) => {
+    const updatedTodoContent = window.prompt('오늘 할 일을 수정하세요.', todo);
+    updateTodo({ id, todo: updatedTodoContent, isCompleted });
+  };
+
   useEffect(() => {
     setTodos(getTodos);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getTodos]);
 
   if (!todos) return null;
 
-  return <TodoView todoList={todos} onSubmitTodo={onSubmitTodo} onDeleteTodo={onDeleteTodo} />;
+  return (
+    <TodoView
+      todoList={todos}
+      onSubmitTodo={onSubmitTodo}
+      onDeleteTodo={onDeleteTodo}
+      onUpdateTodo={onUpdateTodo}
+    />
+  );
 };
 
 export default Home;

@@ -5,7 +5,7 @@ import useMutation from '../useMutaion';
 
 const token = Storage.getAuthToken({ name: Constants.AuthTokenName });
 
-const fetchDeleteTodo = id =>
+const fetchDeleteTodo = ({ id }) =>
   fetch(`${Constants.BASE_URL}/todos/${id}`, {
     method: 'DELETE',
     headers: {
@@ -18,7 +18,7 @@ const useDeleteTodo = () => {
   const { setTodos } = useTodoList();
 
   const [deleteTodo] = useMutation(fetchDeleteTodo, {
-    onSuccess: id => {
+    onSuccess: ({ id }) => {
       setTodos(prev => [...prev.filter(prev => prev.id !== id)]);
     },
   });

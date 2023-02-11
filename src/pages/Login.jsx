@@ -7,14 +7,12 @@ const LoginPage = () => {
   const { signIn } = useLogin();
   const formData = useMemo(() => new Map(), []);
 
-  const handleChange = e => {
-    const $target = e.target;
+  const handleChange = ({ target }) => {
+    const validityErrorMessage = getValidityErrorMessage(target);
+    target.setCustomValidity(validityErrorMessage);
+    target.reportValidity();
 
-    const validityErrorMessage = getValidityErrorMessage($target);
-    $target.setCustomValidity(validityErrorMessage);
-    $target.reportValidity();
-
-    formData.set($target.name, $target.value);
+    formData.set(target.name, target.value);
   };
 
   const onSubmit = async e => {

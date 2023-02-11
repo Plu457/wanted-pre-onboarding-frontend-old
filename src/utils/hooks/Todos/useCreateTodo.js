@@ -5,10 +5,10 @@ import useMutaion from '../useMutaion';
 
 const token = Storage.getAuthToken({ name: Constants.AuthTokenName });
 
-const fetchCreateTodo = data =>
+const fetchCreateTodo = ({ todo }) =>
   fetch(`${Constants.BASE_URL}/todos`, {
     method: 'POST',
-    body: JSON.stringify(data),
+    body: JSON.stringify({ todo }),
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token || null}`,
@@ -20,7 +20,6 @@ const useCreateTodo = () => {
 
   const [createTodo] = useMutaion(fetchCreateTodo, {
     onSuccess: res => {
-      console.log('res: >> ', res);
       setTodos(prev => [...prev, res]);
     },
   });
