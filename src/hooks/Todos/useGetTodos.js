@@ -1,19 +1,11 @@
 import { useFetch } from 'hooks';
-import { Storage } from 'utils';
-import { Constants } from 'commons';
+import { Fetch } from 'utils';
 
 const useGetTodos = () => {
-  const URL = '/todos';
-  const accessToken = Storage.getAuthToken({ name: Constants.AuthTokenName });
+  const url = '/todos';
+  const { data } = useFetch(Fetch.getTodos, url);
 
-  const options = {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  };
-
-  return useFetch(URL, options);
+  return { data };
 };
 
 export default useGetTodos;

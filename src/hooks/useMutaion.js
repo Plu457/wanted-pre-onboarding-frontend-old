@@ -19,7 +19,13 @@ const useMutation = (fetchAPI, { onSuccess, onError }) => {
         return;
       }
 
+      if (!response.ok) {
+        const { error, message, statusCode } = response;
+        throw new Error(`statusCode: ${statusCode}, message: ${message}, error: ${error}`);
+      }
+
       const responseData = await response.json();
+
       setValue(prev => ({ ...prev, data: responseData }));
 
       if (onSuccess) onSuccess(responseData);

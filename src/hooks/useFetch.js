@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Constants } from 'commons';
 
-const useFetch = (url, options) => {
+const useFetch = (fetchAPI, url) => {
   const [fetchState, setFetchValue] = useState({
     data: undefined,
     isLoading: false,
@@ -14,10 +13,12 @@ const useFetch = (url, options) => {
     const fetchData = async () => {
       try {
         setFetchValue(prev => ({ ...prev, isLoading: true }));
-        const response = await fetch(`${Constants.BASE_URL}${url}`, options);
+
+        const response = await fetchAPI(url);
         if (!response.ok) {
           throw new Error(`Failed to fetch data from ${url}. Response status: ${response.status}`);
         }
+
         const json = await response.json();
         setFetchValue(prev => ({ ...prev, data: json }));
       } catch (error) {
@@ -29,7 +30,7 @@ const useFetch = (url, options) => {
 
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [url]);
+  }, []);
 
   return { data, isLoading, error, isError: error !== null };
 };
