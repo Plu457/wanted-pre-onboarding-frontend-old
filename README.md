@@ -1,5 +1,9 @@
 # 원티드 프리온보딩 프론트엔드 - 선발 과제
 
+- 테스트 아이디: tesstt@gmail.com
+- 테스트 비밀번호: tesst1234
+- [배포주소](https://wanted-pre-onboarding-frontend-blue.vercel.app/)
+
 ## 목차
 
 - [기술 스택](#기술-스택)
