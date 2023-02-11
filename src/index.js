@@ -6,6 +6,7 @@ import { AuthContextProvider } from 'context/AuthContext';
 import { TodoListContextProvider } from 'context/TodoContext';
 import Router from 'Router';
 import 'styles/global.css';
+import Layout from 'components/Layout';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +14,9 @@ root.render(
     <AuthContextProvider>
       <TodoListContextProvider>
         <BrowserRouter>
-          <Router />
+          <Layout>
+            <Router />
+          </Layout>
         </BrowserRouter>
       </TodoListContextProvider>
     </AuthContextProvider>
