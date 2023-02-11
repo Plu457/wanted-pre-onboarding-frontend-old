@@ -34,10 +34,30 @@ const updateTodo = ({ id, todo, isCompleted }) =>
     headers: getHeaders(),
   });
 
+const login = ({ email, password }) =>
+  fetch(`${Constants.BASE_URL}/auth/signin`, {
+    method: 'POST',
+    body: JSON.stringify({ email, password }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+const signUp = ({ email, password }) =>
+  fetch(`${Constants.BASE_URL}/auth/signUp`, {
+    method: 'POST',
+    body: JSON.stringify({ email, password }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   getTodos,
   createTodo,
   deleteTodo,
   updateTodo,
+  login,
+  signUp,
 };

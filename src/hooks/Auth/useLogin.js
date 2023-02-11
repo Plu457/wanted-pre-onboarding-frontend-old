@@ -1,22 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 
 import { Constants } from 'commons';
-import { Storage } from 'utils';
 import useMutation from 'hooks/useMutaion';
-
-const fetchLogin = ({ email, password }) =>
-  fetch(`${Constants.BASE_URL}/auth/signin`, {
-    method: 'POST',
-    body: JSON.stringify({ email, password }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+import { Fetch, Storage } from 'utils';
 
 const useLogin = () => {
   const navigate = useNavigate();
 
-  const [signIn] = useMutation(fetchLogin, {
+  const [signIn] = useMutation(Fetch.login, {
     onSuccess: res => {
       Storage.setAuthToken({
         name: Constants.AuthTokenName,
