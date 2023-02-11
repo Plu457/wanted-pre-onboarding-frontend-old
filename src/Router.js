@@ -8,17 +8,17 @@ import LoginPage from 'pages/Login';
 import SignUpPage from 'pages/SignUp';
 
 const Router = () => {
-  const { isLoggedIn } = useAuthState();
+  const { isAuthorized } = useAuthState();
   const navigator = useNavigate();
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (!isAuthorized) {
       navigator('/signin');
     } else {
       navigator('/');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoggedIn]);
+  }, [isAuthorized]);
 
   return (
     <Routes>

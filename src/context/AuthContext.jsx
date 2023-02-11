@@ -7,11 +7,11 @@ const AuthContext = createContext(null);
 export const useAuthState = () => useContext(AuthContext);
 
 export const AuthContextProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(
+  const [isAuthorized, setIsAuthorized] = useState(
     !!Storage.getAuthToken({ name: Constants.AuthTokenName }),
   );
 
-  const state = useMemo(() => ({ isLoggedIn, setIsLoggedIn }), [isLoggedIn]);
+  const state = useMemo(() => ({ isAuthorized, setIsAuthorized }), [isAuthorized]);
 
   return <AuthContext.Provider value={state}>{children}</AuthContext.Provider>;
 };
