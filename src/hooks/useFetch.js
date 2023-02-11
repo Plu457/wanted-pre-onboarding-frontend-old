@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { Storage } from 'utils';
+import { Constants } from 'commons';
 
 const useFetch = (fetchAPI, url) => {
   const [fetchState, setFetchValue] = useState({
@@ -10,6 +12,8 @@ const useFetch = (fetchAPI, url) => {
   const { data, isLoading, error } = fetchState;
 
   useEffect(() => {
+    if (!Storage.getAuthToken({ name: Constants.AuthTokenName })) return;
+
     const fetchData = async () => {
       try {
         setFetchValue(prev => ({ ...prev, isLoading: true }));
