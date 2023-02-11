@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import Input from 'components/Input';
 import TodoItem from './TodoItem';
 
-const TodoView = ({ todoList, onSubmitTodo, onDeleteTodo, onUpdateTodo }) => {
+const TodoView = ({ todoList, onSubmitTodo, onDeleteTodo, onUpdateTodo, onCompleted }) => {
   const inputRef = useRef(null);
 
   return (
@@ -24,6 +24,7 @@ const TodoView = ({ todoList, onSubmitTodo, onDeleteTodo, onUpdateTodo }) => {
               key={item.id}
               onDeleteTodo={onDeleteTodo}
               onUpdateTodo={onUpdateTodo}
+              onCompleted={onCompleted}
               {...item}
             />
           ))}

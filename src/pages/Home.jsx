@@ -36,12 +36,15 @@ const Home = () => {
     updateTodo({ id, todo: updatedTodoContent, isCompleted });
   };
 
+  const onCompleted = ({ id, todo, isCompleted = true }) => updateTodo({ id, todo, isCompleted });
+
   return (
     <TodoView
       todoList={todos}
       onSubmitTodo={onSubmitTodo}
       onDeleteTodo={onDeleteTodo}
       onUpdateTodo={onUpdateTodo}
+      onCompleted={onCompleted}
     />
   );
 };

@@ -1,7 +1,10 @@
-const TodoItem = ({ onDeleteTodo, onUpdateTodo, id, todo, isCompleted }) => {
+const TodoItem = ({ onDeleteTodo, onUpdateTodo, onCompleted, id, todo, isCompleted }) => {
   return (
     <li className="flex items-center py-2 gap-2">
-      <span className="w-full pl-2">{todo}</span>
+      <input type="checkbox" checked={isCompleted} onChange={() => onCompleted({ id, todo })} />
+      <span className={`w-full pl-2 ${isCompleted ? 'line-through text-gray-400' : ''}`}>
+        {todo}
+      </span>
       <button
         type="button"
         data-testid="new-todo-input"
