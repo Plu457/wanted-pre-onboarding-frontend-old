@@ -9,33 +9,33 @@ const getHeaders = () => ({
 });
 
 const getTodos = url =>
-  fetch(`${Constants.BASE_URL}${url}`, {
+  fetch(`${Constants.BaseUrl}${url}`, {
     method: 'GET',
     headers: getHeaders(),
   });
 
 const createTodo = ({ todo }) =>
-  fetch(`${Constants.BASE_URL}/todos`, {
+  fetch(`${Constants.BaseUrl}/todos`, {
     method: 'POST',
     body: JSON.stringify({ todo }),
     headers: getHeaders(),
   });
 
 const deleteTodo = ({ id }) =>
-  fetch(`${Constants.BASE_URL}/todos/${id}`, {
+  fetch(`${Constants.BaseUrl}/todos/${id}`, {
     method: 'DELETE',
     headers: getHeaders(),
   });
 
 const updateTodo = ({ id, todo, isCompleted }) =>
-  fetch(`${Constants.BASE_URL}/todos/${id}`, {
+  fetch(`${Constants.BaseUrl}/todos/${id}`, {
     method: 'PUT',
     body: JSON.stringify({ todo, isCompleted }),
     headers: getHeaders(),
   });
 
 const login = ({ email, password }) =>
-  fetch(`${Constants.BASE_URL}/auth/signin`, {
+  fetch(`${Constants.BaseUrl}/auth/signin`, {
     method: 'POST',
     body: JSON.stringify({ email, password }),
     headers: {
@@ -44,7 +44,7 @@ const login = ({ email, password }) =>
   });
 
 const signUp = ({ email, password }) =>
-  fetch(`${Constants.BASE_URL}/auth/signUp`, {
+  fetch(`${Constants.BaseUrl}/auth/signUp`, {
     method: 'POST',
     body: JSON.stringify({ email, password }),
     headers: {
