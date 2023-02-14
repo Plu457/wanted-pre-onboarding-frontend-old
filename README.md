@@ -3,6 +3,7 @@
 - 테스트 아이디: tesstt@gmail.com
 - 테스트 비밀번호: tesst1234
 - [배포주소](https://wanted-pre-onboarding-frontend-blue.vercel.app/)
+- [개발문서](https://www.plu457.life/blog/439cbcaa-78ce-43aa-bd0e-12196f627de4#d2b44b692ef84d6dac7dbcd9ba3a1fc0)
 
 ## 목차
 
