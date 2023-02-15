@@ -8,6 +8,8 @@ const LoginPage = () => {
   const formData = useMemo(() => new Map(), []);
 
   const handleChange = ({ target }) => {
+    if (!(target instanceof HTMLInputElement)) return;
+
     const validityErrorMessage = getValidityErrorMessage(target);
     target.setCustomValidity(validityErrorMessage);
     target.reportValidity();
